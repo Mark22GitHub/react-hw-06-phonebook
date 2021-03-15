@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import styles from './ContactForm.module.css';
+import React, { Component } from "react";
+import { v4 as uuidv4 } from "uuid";
+import styles from "./ContactForm.module.css";
+import { connect } from "react-redux";
+import contactsActions from "../../redux/contacts/contacts-actions";
 
 export const INITIAL_STATE = {
-  name: '',
-  number: '',
+  name: "",
+  number: "",
 };
 
 class ContactForm extends Component {
@@ -13,13 +15,13 @@ class ContactForm extends Component {
 
   state = { ...INITIAL_STATE };
 
-  handleChange = evt => {
+  handleChange = (evt) => {
     // console.log(evt.currentTarget.value);
     const { name, value } = evt.currentTarget;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = evt => {
+  handleSubmit = (evt) => {
     evt.preventDefault();
     // console.log(this.state);
     this.props.onSubmit(this.state);
@@ -70,4 +72,8 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (payload) => dispatch(contactsActions.addContact(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);
