@@ -48,6 +48,7 @@ class ContactForm extends Component {
               value={this.state.name}
               onChange={this.handleChange}
               id={this.nameInputId}
+              placeholder="enter name"
             />
           </label>
 
@@ -60,6 +61,7 @@ class ContactForm extends Component {
               value={this.state.number}
               onChange={this.handleChange}
               id={this.numberInputId}
+              placeholder="enter number"
             />
           </label>
 
@@ -71,6 +73,10 @@ class ContactForm extends Component {
     );
   }
 }
+
+// return state.find(({ name }) => name === payload.name)
+//   ? alert(`${payload.name} is already in contacts`)
+//   : [...state, payload];
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (payload) => dispatch(contactsActions.addContact(payload)),

@@ -1,13 +1,19 @@
-import { createStore, combineReducers } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { createStore, combineReducers } from "redux";
+// import { composeWithDevTools } from "redux-devtools-extension";
 import contactsReducer from "./contacts/contacts-reducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer,
+// });
+
+// const store = createStore(rootReducer, composeWithDevTools());
+
+const store = configureStore({
+  reducer: {
+    contacts: contactsReducer,
+  },
+  devTools: process.env.NODE_ENV === "development",
 });
-
-// const reducer = (state = {}, action) => state;
-
-const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;

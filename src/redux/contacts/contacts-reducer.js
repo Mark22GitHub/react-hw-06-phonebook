@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import types from "./contacts-types";
+import { createReducer } from "@reduxjs/toolkit";
+import contactsActions from "./contacts-actions";
 
 // {
 //   contacts: {
@@ -8,41 +10,41 @@ import types from "./contacts-types";
 //   }
 // }
 
-// contacts.find((contact) => contact.name === name)
-//   ? alert(`${name} is already in contacts`)
-//   : this.setState(({ contacts }) => ({
-//       contacts: [...contacts, contact],
-//     }));
+const items = createReducer([], {
+  [contactsActions.addContact]: (state, { payload }) => [...state, payload],
+  [contactsActions.deleteFromContacts]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
+});
 
-// return state.find((name) => name === name)
-//   ? alert(`${name} is already in contacts`)
-//   : [...state, payload];
+const filter = createReducer("", {
+  [contactsActions.changeFilter]: (state, { payload }) => payload,
+});
 
-const items = (state = [], { type, payload }) => {
-  switch (type) {
-    case types.ADD:
-      return [...state, payload];
-    //   return state.find((name) => name === name)
-    //     ? alert(`${payload.name} is already in contacts`)
-    //     : [...state, payload];
+// const items = (state = [], { type, payload }) => {
+//   switch (type) {
+//     case types.ADD:
+//       return [...state, payload];
+//     //   return state.find(({ name }) => name === payload.name)
+//     //     ? alert(`${payload.name} is already in contacts`)
+//     //     : [...state, payload];
 
-    case types.DELETE:
-      return state.filter(({ id }) => id !== payload);
+//     case types.DELETE:
+//       return state.filter(({ id }) => id !== payload);
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
-const filter = (state = "", { type, payload }) => {
-  switch (type) {
-    case types.CHANGE_FILTER:
-      return payload;
+// const filter = (state = "", { type, payload }) => {
+//   switch (type) {
+//     case types.CHANGE_FILTER:
+//       return payload;
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
 export default combineReducers({
   items,
