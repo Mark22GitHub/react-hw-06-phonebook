@@ -10,8 +10,14 @@ import contactsActions from "./contacts-actions";
 //   }
 // }
 
+/*Redux Tookit*/
+
 const items = createReducer([], {
-  [contactsActions.addContact]: (state, { payload }) => [...state, payload],
+  [contactsActions.addContact]: (state, { payload }) =>
+    state.find(({ name }) => name === payload.name)
+      ? alert(`${payload.name} is already in contacts`)
+      : [...state, payload],
+  //   [contactsActions.addContact]: (state, { payload }) => [...state, payload],
   [contactsActions.deleteFromContacts]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
@@ -19,6 +25,8 @@ const items = createReducer([], {
 const filter = createReducer("", {
   [contactsActions.changeFilter]: (state, { payload }) => payload,
 });
+
+/*Redux*/
 
 // const items = (state = [], { type, payload }) => {
 //   switch (type) {
