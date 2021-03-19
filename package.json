@@ -1,8 +1,8 @@
 {
-  "name": "react-hw-02-feedback",
+  "name": "react-hw-06-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Mark22GitHub.github.io/react-hw-03-phonebook",
+  "homepage": "https://Mark22GitHub.github.io/react-hw-06-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
