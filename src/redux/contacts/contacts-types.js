@@ -1,5 +1,5 @@
 export default {
-  ADD: "contacts/Add",
-  DELETE: "contacts/Delete",
+  ADD_CONTACTS: "contacts/Add",
+  DELETE_CONTACTS: "contacts/Delete",
   CHANGE_FILTER: "contacts/ChangeFilter",
 };

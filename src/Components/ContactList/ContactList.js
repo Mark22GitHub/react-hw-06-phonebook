@@ -50,7 +50,14 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 ContactList.propTypes = {
-  contacts: PropTypes.array,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+
   onDeleteFromContacts: PropTypes.func,
 };
 
